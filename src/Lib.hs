@@ -1,4 +1,4 @@
-module Lib (isSorted, toTwoArgs,sumRows3) where
+module Lib (isSorted, toTwoArgs, sumRows3, setHead) where
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -13,3 +13,6 @@ toTwoArgs f a (b, c) = f a b c
 sumRows3 :: Num n => [n] -> [n] -> [n] -> [n]
 sumRows3 xs ys zs =
   zipWith (toTwoArgs (\x y z -> x + y + z)) xs (zip ys zs)
+
+setHead :: a -> [a] -> [a]
+setHead x xs = x : xs
