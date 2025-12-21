@@ -1,4 +1,10 @@
-module Lib (isSorted, toTwoArgs, sumRows3, setHead, appendAt) where
+module Lib (
+    isSorted,
+    toTwoArgs,
+    sumRows3,
+    setHead,
+    appendAt,
+    squarePairs) where
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -21,3 +27,8 @@ appendAt :: Int -> a -> [a] -> [a]
 appendAt idx v xs | idx <= 0 = v : xs
 appendAt _ v [] = [v]
 appendAt idx v (x:rest) = x : appendAt (idx - 1) v rest
+
+
+squarePairs :: Num n => [n] -> [n] -> [n]
+squarePairs xs ys =
+  map (\(x, y) -> (x + y) * (x + y)) (zip xs ys)
