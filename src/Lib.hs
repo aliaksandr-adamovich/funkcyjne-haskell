@@ -1,4 +1,4 @@
-module Lib (isSorted, toTwoArgs, sumRows3, setHead) where
+module Lib (isSorted, toTwoArgs, sumRows3, setHead, appendAt) where
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -16,3 +16,8 @@ sumRows3 xs ys zs =
 
 setHead :: a -> [a] -> [a]
 setHead x xs = x : xs
+
+appendAt :: Int -> a -> [a] -> [a]
+appendAt idx v xs | idx <= 0 = v : xs
+appendAt _ v [] = [v]
+appendAt idx v (x:rest) = x : appendAt (idx - 1) v rest
