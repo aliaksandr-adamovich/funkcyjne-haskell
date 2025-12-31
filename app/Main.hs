@@ -19,3 +19,7 @@ main = scotty 3000 $ do
     s <- param "s"
     json (stateInt s)
 
+  get "/state/double/:s" $ do
+    s <- param "s"
+    json (stateDouble s)
+

@@ -6,6 +6,7 @@ module Lib (
     appendAt,
     squarePairs,
     stateInt,
+    stateDouble,
     ) where
 
 import Data.Int (Int64)
@@ -42,4 +43,9 @@ squarePairs xs ys =
 
 stateInt :: Int -> Int
 stateInt s = abs s `mod` (maxBound :: Int)
+
+stateDouble :: Int -> Double
+stateDouble s =
+  fromIntegral (abs s `mod` 1000000) / 1000000
+
 
