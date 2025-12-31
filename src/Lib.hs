@@ -7,6 +7,7 @@ module Lib (
     squarePairs,
     stateInt,
     stateDouble,
+    statePairs,
     ) where
 
 import Data.Int (Int64)
@@ -48,4 +49,9 @@ stateDouble :: Int -> Double
 stateDouble s =
   fromIntegral (abs s `mod` 1000000) / 1000000
 
+statePairs :: Int -> ((Int, Double), (Double, Int), (Double, Double, Double))
+statePairs s =
+  let i = stateInt s
+      d = stateDouble s
+  in ((i, d), (d, i), (d, d, d))
 
