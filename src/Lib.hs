@@ -8,6 +8,7 @@ module Lib (
     stateInt,
     stateDouble,
     statePairs,
+    stateDoubleMap,
     ) where
 
 import Data.Int (Int64)
@@ -54,4 +55,10 @@ statePairs s =
   let i = stateInt s
       d = stateDouble s
   in ((i, d), (d, i), (d, d, d))
+
+
+stateDoubleMap :: Int -> Double
+stateDoubleMap s =
+  head $ map stateDouble [s]
+
 

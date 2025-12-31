@@ -26,3 +26,8 @@ main = scotty 3000 $ do
   get "/state/pairs/:s" $ do
     s <- param "s"
     json (statePairs s)
+
+  get "/state/double/map/:s" $ do
+    s <- param "s"
+    json (stateDoubleMap s)
+
