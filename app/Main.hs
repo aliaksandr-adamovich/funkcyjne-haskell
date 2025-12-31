@@ -31,3 +31,6 @@ main = scotty 3000 $ do
     s <- param "s"
     json (stateDoubleMap s)
 
+  get "/state/double/flatmap/:s" $ do
+    s <- param "s"
+    json (stateDoubleFlatMap s)

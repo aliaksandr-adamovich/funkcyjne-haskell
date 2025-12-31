@@ -9,6 +9,7 @@ module Lib (
     stateDouble,
     statePairs,
     stateDoubleMap,
+    stateDoubleFlatMap,
     ) where
 
 import Data.Int (Int64)
@@ -62,3 +63,6 @@ stateDoubleMap s =
   head $ map stateDouble [s]
 
 
+stateDoubleFlatMap :: Int -> Double
+stateDoubleFlatMap s =
+  head $ concatMap (\x -> [stateDouble x]) [s]
