@@ -24,3 +24,10 @@ main = scotty 3000 $ do
     a <- param "a"
     b <- param "b"
     json (addOrSub False a b)
+
+  post "/concat" $ do
+    (a, b, c) <- jsonData :: ActionM ([Int], [Int], [Int])
+    json (concatThree a b c)
+
+
+

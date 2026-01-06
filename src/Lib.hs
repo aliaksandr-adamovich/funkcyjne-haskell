@@ -5,7 +5,10 @@ module Lib (
     setHead,
     appendAt,
     squarePairs,
-    addOrSub) where
+    addOrSub,
+    concatThree,
+    ) where
+import Control.Monad (guard)
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -39,3 +42,11 @@ addOrSub isAdd a b =
   head $ map op [a]
   where
     op = if isAdd then (+ b) else subtract b
+
+
+concatThree :: [a] -> [a] -> [a] -> [a]
+concatThree a b c =
+ mconcat [a, b, c]
+
+
+
