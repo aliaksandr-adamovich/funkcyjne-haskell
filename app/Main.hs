@@ -14,3 +14,13 @@ main = scotty 3000 $ do
     let ok1 = isSorted (<=) [1,2,2,4]
     let ok2 = isSorted (<=) [1,3,2]
     text (TL.pack (show (ok1, ok2)))
+
+  get "/add/:a/:b" $ do
+    a <- param "a"
+    b <- param "b"
+    json (addOrSub True a b)
+
+  get "/sub/:a/:b" $ do
+    a <- param "a"
+    b <- param "b"
+    json (addOrSub False a b)

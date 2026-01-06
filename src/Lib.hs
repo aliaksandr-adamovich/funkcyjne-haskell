@@ -4,7 +4,8 @@ module Lib (
     sumRows3,
     setHead,
     appendAt,
-    squarePairs) where
+    squarePairs,
+    addOrSub) where
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -32,3 +33,9 @@ appendAt idx v (x:rest) = x : appendAt (idx - 1) v rest
 squarePairs :: Num n => [n] -> [n] -> [n]
 squarePairs xs ys =
   map (\(x, y) -> (x + y) * (x + y)) (zip xs ys)
+
+addOrSub :: Bool -> Int -> Int -> Int
+addOrSub isAdd a b =
+  head $ map op [a]
+  where
+    op = if isAdd then (+ b) else subtract b
