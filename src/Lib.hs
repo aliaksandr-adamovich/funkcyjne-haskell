@@ -7,7 +7,7 @@ module Lib (
     squarePairs,
     addOrSub,
     concatThree,
-    ) where
+    sumOrNil,) where
 import Control.Monad (guard)
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
@@ -48,5 +48,8 @@ concatThree :: [a] -> [a] -> [a] -> [a]
 concatThree a b c =
  mconcat [a, b, c]
 
-
+sumOrNil :: [Int] -> Maybe Int
+sumOrNil xs = do
+  guard (not (null xs))
+  return (sum xs)
 

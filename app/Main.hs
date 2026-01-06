@@ -29,5 +29,7 @@ main = scotty 3000 $ do
     (a, b, c) <- jsonData :: ActionM ([Int], [Int], [Int])
     json (concatThree a b c)
 
-
+  post "/sum" $ do
+    xs <- jsonData
+    json (sumOrNil xs)
 
