@@ -7,7 +7,15 @@ module Lib (
     squarePairs,
     addOrSub,
     concatThree,
-    sumOrNil,) where
+    sumOrNil,
+    stateInt,
+    stateDouble,
+    statePairs,
+    stateDoubleMap,
+    stateDoubleFlatMap,
+    ) where
+
+import Data.Int (Int64)
 import Control.Monad (guard)
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
@@ -53,3 +61,27 @@ sumOrNil xs = do
   guard (not (null xs))
   return (sum xs)
 
+  ----------------------------------------------------------------------
+
+stateInt :: Int -> Int
+stateInt s = abs s `mod` (maxBound :: Int)
+
+stateDouble :: Int -> Double
+stateDouble s =
+  fromIntegral (abs s `mod` 1000000) / 1000000
+
+statePairs :: Int -> ((Int, Double), (Double, Int), (Double, Double, Double))
+statePairs s =
+  let i = stateInt s
+      d = stateDouble s
+  in ((i, d), (d, i), (d, d, d))
+
+
+stateDoubleMap :: Int -> Double
+stateDoubleMap s =
+  head $ map stateDouble [s]
+
+
+stateDoubleFlatMap :: Int -> Double
+stateDoubleFlatMap s =
+  head $ concatMap (\x -> [stateDouble x]) [s]

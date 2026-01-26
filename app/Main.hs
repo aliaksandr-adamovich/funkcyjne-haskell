@@ -33,3 +33,22 @@ main = scotty 3000 $ do
     xs <- jsonData
     json (sumOrNil xs)
 
+  get "/state/int/:s" $ do
+    s <- param "s"
+    json (stateInt s)
+
+  get "/state/double/:s" $ do
+    s <- param "s"
+    json (stateDouble s)
+
+  get "/state/pairs/:s" $ do
+    s <- param "s"
+    json (statePairs s)
+
+  get "/state/double/map/:s" $ do
+    s <- param "s"
+    json (stateDoubleMap s)
+
+  get "/state/double/flatmap/:s" $ do
+    s <- param "s"
+    json (stateDoubleFlatMap s)
