@@ -14,3 +14,23 @@ main = scotty 3000 $ do
     let ok1 = isSorted (<=) [1,2,2,4]
     let ok2 = isSorted (<=) [1,3,2]
     text (TL.pack (show (ok1, ok2)))
+
+  get "/state/int/:s" $ do
+    s <- param "s"
+    json (stateInt s)
+
+  get "/state/double/:s" $ do
+    s <- param "s"
+    json (stateDouble s)
+
+  get "/state/pairs/:s" $ do
+    s <- param "s"
+    json (statePairs s)
+
+  get "/state/double/map/:s" $ do
+    s <- param "s"
+    json (stateDoubleMap s)
+
+  get "/state/double/flatmap/:s" $ do
+    s <- param "s"
+    json (stateDoubleFlatMap s)

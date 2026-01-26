@@ -4,7 +4,16 @@ module Lib (
     sumRows3,
     setHead,
     appendAt,
-    squarePairs) where
+    squarePairs,
+    stateInt,
+    stateDouble,
+    statePairs,
+    stateDoubleMap,
+    stateDoubleFlatMap,
+    ) where
+
+import Data.Int (Int64)
+
 
 isSorted :: (a -> a -> Bool) -> [a] -> Bool
 isSorted _ [] = True
@@ -32,3 +41,28 @@ appendAt idx v (x:rest) = x : appendAt (idx - 1) v rest
 squarePairs :: Num n => [n] -> [n] -> [n]
 squarePairs xs ys =
   map (\(x, y) -> (x + y) * (x + y)) (zip xs ys)
+
+  ----------------------------------------------------------------------
+
+stateInt :: Int -> Int
+stateInt s = abs s `mod` (maxBound :: Int)
+
+stateDouble :: Int -> Double
+stateDouble s =
+  fromIntegral (abs s `mod` 1000000) / 1000000
+
+statePairs :: Int -> ((Int, Double), (Double, Int), (Double, Double, Double))
+statePairs s =
+  let i = stateInt s
+      d = stateDouble s
+  in ((i, d), (d, i), (d, d, d))
+
+
+stateDoubleMap :: Int -> Double
+stateDoubleMap s =
+  head $ map stateDouble [s]
+
+
+stateDoubleFlatMap :: Int -> Double
+stateDoubleFlatMap s =
+  head $ concatMap (\x -> [stateDouble x]) [s]
